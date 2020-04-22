@@ -1,0 +1,35 @@
+{
+	"name": "agregador-utm",
+	"version": "1.0.0",
+	"description": "Sistema simples para agregar e catalogar links de campanha parametrizados",
+	"main": "index.js",
+	"scripts": {
+		"start": "env-cmd -f ./.env nodemon src/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/biellz1221/agregador-utm.git"
+	},
+	"author": "Gabriel Baptista",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/biellz1221/agregador-utm/issues"
+	},
+	"homepage": "https://github.com/biellz1221/agregador-utm#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"env-cmd": "^10.1.0",
+		"express": "^4.17.1",
+		"fast-csv": "^4.1.3",
+		"json2csv": "^5.0.0",
+		"jsonwebtoken": "^8.5.1",
+		"moment": "^2.24.0",
+		"mongodb": "^3.5.6",
+		"mongoose": "^5.9.9",
+		"validator": "^13.0.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.3"
+	}
+}
