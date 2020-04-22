@@ -1,3 +1,13 @@
+/**
+ * Builds the final link as String
+ * @param {string} ogLink
+ * @param {string} source
+ * @param {string} campaign
+ * @param {string} media
+ * @param {string} term
+ * @param {string} content
+ */
+
 const concatUTMParams = function (ogLink, source, campaign, media, term, content) {
 	let linkStr = ogLink;
 	if (linkStr.includes('?')) {
