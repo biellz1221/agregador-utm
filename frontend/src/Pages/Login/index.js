@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 import { api } from '../../Services/api';
+import { store } from '../../store';
 
 import './styles.scss';
 
 export default function Login() {
+	const currentUser = useContext(store);
+	//console.log(currentUser);
+	const { dispatch } = currentUser;
+	function setUser(token, userEmail, userName) {
+		dispatch({
+			type: 'LOGIN',
+			token: token,
+			userEmail: userEmail,
+			userName: userName,
+		});
+		//console.log('currentUser', currentUser.state.token);
+	}
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const history = useHistory();
@@ -18,7 +32,19 @@ export default function Login() {
 				password: password,
 			});
 
+			//console.log(response);
+
 			if (response.data.token) {
+				//setUser(response.data.token, response.data.user.email, response.data.user.name);
+				Cookies.set(
+					'utmloginsession',
+					JSON.stringify({
+						token: response.data.token,
+						name: response.data.user.name,
+						email: response.data.user.name,
+					})
+				);
+				console.log(Cookies.get('utmloginsession'));
 				history.push('/links');
 			} else {
 				alert('Response retornou sem token');

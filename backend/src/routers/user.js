@@ -41,7 +41,7 @@ router.post('/users/me/logout', auth, async (req, res) => {
 			return token.token != req.token;
 		});
 		await req.user.save();
-		res.send();
+		res.status(200).send({ status: 'usuário deslogado' });
 	} catch (err) {
 		res.status(500).send(err);
 	}
