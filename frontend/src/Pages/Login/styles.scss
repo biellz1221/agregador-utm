@@ -1,0 +1,70 @@
+@import '../../Assets/Sass/variables';
+@import '../../Assets/Sass/mixins';
+
+.container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.login {
+    width: 90%;
+    max-width: 400px;
+    padding: 35px;
+    border: 1px solid darken($lightGrey, 5%);
+    border-radius: 5px;
+    background: lighten($lightGrey, 5%);
+    box-shadow: 0 0 5px rgba($preto, .3);
+    p {
+        font-size: .9rem;
+        text-align: center;
+        margin: 0 0 25px;
+        opacity: .7;
+    }
+    form {
+        label {
+            display: block;
+            text-transform: uppercase;
+            font-weight: 900;
+            opacity: .6;
+            font-size: .75rem;
+        }
+        input, button {
+            width: 100%;
+            border-radius: 3px;
+        }
+        input {
+            margin: 3px 0 10px;
+            border: 1px solid $lightGrey;
+            padding: 10px;
+        }
+        button {
+            background: $btn-verde;
+            color: $branco;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 15px;
+            padding: 13px;
+            span {
+                padding-right: 8px;
+            }
+        }
+        a {
+            display: block;
+            text-align: center;
+            font-size: .85rem;
+            font-style: italic;
+            color: rgba($preto, .7);
+            text-decoration: none;
+            transition: .3s;
+            &:hover {
+                opacity: .7;
+            }
+        }
+    }
+}
