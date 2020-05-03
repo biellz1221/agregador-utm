@@ -1,0 +1,11 @@
+@import '../../Assets/Sass/variables';
+.toolTip {
+    padding: 0 3px;
+    font-size: .6rem;
+    line-height: .85rem;
+    //font-style: italic;
+    background-color: darken($lightGrey, 5%);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    white-space: nowrap;
+}
