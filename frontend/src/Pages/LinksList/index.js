@@ -2,9 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../Services/api';
 import { store } from '../../store';
-import { FiPlusCircle, FiCopy, FiEye, FiXCircle } from 'react-icons/fi';
+import { FiPlusCircle, FiCopy, FiEye, FiXCircle, FiCheckCircle } from 'react-icons/fi';
 import TopMenu from '../../Components/TopMenu';
 import ToolTip from '../../Components/ToolTip';
+import Modal from '../../Components/Modal';
 import Cookies from 'js-cookie';
 
 import './styles.scss';
@@ -14,6 +15,7 @@ export default function LinksList() {
 	const history = useHistory();
 	const [links, setLinks] = useState([]);
 	const [reload, setReload] = useState(true);
+	const [showModal, setShowModal] = useState(false);
 
 	//console.log(currentUser);
 	const [authSession, setAuthSession] = useState(JSON.parse(Cookies.get('utmloginsession')));
@@ -34,9 +36,29 @@ export default function LinksList() {
 		navigator.clipboard.writeText(text);
 	}
 
+	function handleModal() {
+		setShowModal(!showModal);
+	}
+
+	function confirmExclusion(id) {
+		handleModal();
+	}
+
 	if (authSession) {
 		return (
 			<div className="containerListaLinks">
+				<Modal title="Confirmar exclusão" show={showModal} parentCallback={handleModal}>
+					<p>Tem certeza que deseja excluir esse link?</p>
+					<div className="btnsConfirm">
+						<button className="confirm">
+							<FiCheckCircle size={16} />
+							Sim, excluir
+						</button>
+						<button className="cancel" onClick={handleModal}>
+							<FiXCircle size={16} /> Não, cancelar
+						</button>
+					</div>
+				</Modal>
 				<TopMenu />
 				<div className="topSection">
 					<h1>Seus Links Salvos</h1>
@@ -81,7 +103,11 @@ export default function LinksList() {
 										) : (
 											''
 										)}
-										<button>
+										<button
+											onClick={() => {
+												confirmExclusion(link._id);
+											}}
+										>
 											<ToolTip text="Excluir Link" />
 											<FiXCircle size={16} />
 										</button>

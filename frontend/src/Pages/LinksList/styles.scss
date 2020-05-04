@@ -125,6 +125,49 @@
     }
 }
 
+.modal {
+    .btnsConfirm {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        button {
+            width: 40%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: .9rem;
+            display: flex;
+            justify-content: center;
+            outline: none;
+            text-decoration: none;
+            transition: .3s;
+            margin: 0 5px;
+            svg {
+                margin-right: 5px;
+            }
+        }
+        .confirm {
+            border: 1px solid darken($pastelGreen, 10%);
+            color: darken($pastelGreen, 50%);
+            background: $pastelGreen;
+            &:hover {
+                background-color: lighten($pastelGreen, 10%);
+                color: darken($pastelGreen, 30%);
+            }
+        }
+        .cancel {
+            border: 1px solid darken($pastelRed, 15%);
+            color: darken($pastelRed, 60%);
+            background: darken($pastelRed, 8%);
+            &:hover {
+                background-color: lighten($pastelRed, 10%);
+                color: darken($pastelRed, 30%);
+            }
+        }
+    }
+}
+
 /*
 
 */
