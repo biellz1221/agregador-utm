@@ -1,21 +1,23 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../Services/api';
-import { store } from '../../store';
 import { FiPlusCircle, FiCopy, FiEye, FiXCircle, FiCheckCircle } from 'react-icons/fi';
 import TopMenu from '../../Components/TopMenu';
 import ToolTip from '../../Components/ToolTip';
 import Modal from '../../Components/Modal';
+import TopSection from '../../Components/TopSection';
 import Cookies from 'js-cookie';
 
 import './styles.scss';
+import ContainerGeral from '../../Components/Container';
 
 export default function LinksList() {
-	const currentUser = useContext(store);
+	//const currentUser = useContext(store);
 	const history = useHistory();
 	const [links, setLinks] = useState([]);
 	const [reload, setReload] = useState(true);
 	const [showModal, setShowModal] = useState(false);
+	const [linkId, setLinkId] = useState('');
 
 	//console.log(currentUser);
 	const [authSession, setAuthSession] = useState(JSON.parse(Cookies.get('utmloginsession')));
@@ -35,22 +37,35 @@ export default function LinksList() {
 	function copyLink(text) {
 		navigator.clipboard.writeText(text);
 	}
-
 	function handleModal() {
 		setShowModal(!showModal);
 	}
 
 	function confirmExclusion(id) {
 		handleModal();
+		setLinkId(id);
+	}
+
+	function excluirLink() {
+		api.delete('/links/delete/' + linkId, {
+			headers: {
+				Authorization: 'Bearer ' + JSON.parse(Cookies.get('utmloginsession')).token,
+			},
+		}).then((res) => {
+			console.log(res.data);
+			setReload(!reload);
+			handleModal();
+			//setLinks(res.data);
+		});
 	}
 
 	if (authSession) {
 		return (
-			<div className="containerListaLinks">
+			<ContainerGeral>
 				<Modal title="Confirmar exclusão" show={showModal} parentCallback={handleModal}>
 					<p>Tem certeza que deseja excluir esse link?</p>
 					<div className="btnsConfirm">
-						<button className="confirm">
+						<button className="confirm" onClick={excluirLink}>
 							<FiCheckCircle size={16} />
 							Sim, excluir
 						</button>
@@ -60,12 +75,14 @@ export default function LinksList() {
 					</div>
 				</Modal>
 				<TopMenu />
-				<div className="topSection">
-					<h1>Seus Links Salvos</h1>
-					<Link to="/links/new">
-						<FiPlusCircle size={16} /> Adicionar Novo
-					</Link>
-				</div>
+				<TopSection
+					titulo="Seus Links Salvos"
+					button={
+						<Link to="/links/new">
+							<FiPlusCircle size={16} /> Adicionar Novo
+						</Link>
+					}
+				/>
 				<div className="listaLinks">
 					<div className="cabecalhos">
 						<div className="field nome">Nome</div>
@@ -117,7 +134,7 @@ export default function LinksList() {
 						})}
 					</ul>
 				</div>
-			</div>
+			</ContainerGeral>
 		);
 	} else {
 		alert('Você não fez login na aplicação');

@@ -1,55 +1,8 @@
 @import '../../Assets/Sass/variables';
 @import '../../Assets/Sass/mixins';
 
-.containerListaLinks {
-    display: flex;
-    //align-content: center;
-    //align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    //height: calc(100vh - 60px);
-    //padding-top: 60px;
-    padding: 80px 10% 0;
-}
-
-.topSection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 12px 17px;
-    border-radius: 5px 5px 0 0;
-    background: darken($lightGrey, 5%);
-    border: 1px solid #ccc;
-    h1 {
-        font-size: 1.7vw;
-        font-weight: 700;
-        letter-spacing: -1px;
-        opacity: .8;
-    }
-    button, a {
-        background: $pastelGreen;
-        //height: 100%;
-        padding: 10px 15px;
-        border-radius: 5px;
-        border: 1px solid darken($pastelGreen, 10%);
-        color:  darken($pastelGreen, 50%);
-        display: flex;
-        justify-content: space-between;
-        width: 12.2vw;
-        outline: none;
-        text-decoration: none;
-        transition: .3s;
-        &:hover {
-            background-color: lighten($pastelGreen, 10%);
-            color: darken($pastelGreen, 30%);
-        }
-    }
-}
-
 .listaLinks {
+    width: 100%;
     .cabecalhos {
         background-color: darken($lightGrey, 3%);
         font-weight: 700;
@@ -71,7 +24,7 @@
         }
     }
     div.field {
-        padding: 10px;
+        padding: 13px;
         display: flex;
         align-items: center;
         border-right: 1px solid #CCC;
