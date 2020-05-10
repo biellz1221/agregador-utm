@@ -6,7 +6,7 @@ const routes = express.Router();
 const concatUTMParams = require('../utils/concatUtm');
 const exportHandler = require('../utils/exportFiles');
 
-//Retorna todos os links criados pelo usuário
+//Retorna todos os links criados pelo usuário logado
 routes.get('/links/mylinks', auth, async (req, res) => {
 	//console.log('Logged User ID:', req.user._id);
 	try {
@@ -14,6 +14,19 @@ routes.get('/links/mylinks', auth, async (req, res) => {
 			'author.id': req.user._id,
 		});
 		res.status(200).send(lstLinks);
+	} catch (err) {
+		res.status(400).send({ error: err });
+	}
+});
+
+//Retorna um link pelo ID, apenas do usuário logado
+routes.get('/links/single/:id', auth, async (req, res) => {
+	//console.log('Logged User ID:', req.user._id);
+	try {
+		const theLink = await Link.find({
+			$and: [{ 'author.id': req.user._id }, { _id: req.params.id }],
+		});
+		res.status(200).send(theLink);
 	} catch (err) {
 		res.status(400).send({ error: err });
 	}
@@ -73,7 +86,7 @@ routes.post('/links/create', auth, async (req, res) => {
 			},
 			paramLink: concatUTMParams(req.body.ogLinkUrl, req.body.utmParams.source, req.body.utmParams.campaign, req.body.utmParams.media, req.body.utmParams.term, req.body.utmParams.content),
 		});
-		//await link.save();
+		await link.save();
 		res.status(201).send(link);
 	} catch (err) {
 		console.log(err);

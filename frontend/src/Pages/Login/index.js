@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 import { api } from '../../Services/api';
-import { store } from '../../store';
+//import { store } from '../../store';
 
 import './styles.scss';
 
 export default function Login() {
-	const currentUser = useContext(store);
+	//const currentUser = useContext(store);
 	//console.log(currentUser);
-	const { dispatch } = currentUser;
+	/*const { dispatch } = currentUser;
 	function setUser(token, userEmail, userName) {
 		dispatch({
 			type: 'LOGIN',
@@ -19,7 +19,7 @@ export default function Login() {
 			userName: userName,
 		});
 		//console.log('currentUser', currentUser.state.token);
-	}
+	}*/
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const history = useHistory();

@@ -1,0 +1,91 @@
+@import '../../Assets/Sass/variables';
+@import '../../Assets/Sass/mixins';
+
+.formWrapper {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    .fieldGroup {
+        width: 100%;
+        margin: 0 0 25px;
+    }
+    .utmBlock {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        .fieldGroup {
+            max-width: 200px;
+            @media #{$mobile} {
+                max-width: 500px;
+            }
+            @media #{$desktopLarge} {
+                max-width: 255px;
+            }
+        }
+    }
+    label {
+        font-weight: 900;
+        display: block;
+        text-transform: uppercase;
+        opacity: .7;
+    }
+    input {
+        width: 100%;
+        margin: 5px 0 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .explain {
+        font-size: .85rem;
+        font-style: italic;
+        margin: 5px 0 0;
+        opacity: .7;
+    }
+    .buttonsHolder {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        button {
+            &:nth-child(2) {
+                margin: 0 15px;
+                @media #{$mobile} {
+                    margin: 15px 0;
+                }
+            }
+        }
+        button,
+        a {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            transition: .3s;
+            text-decoration: none;
+            color: darken($pastelGreen, 50%);
+            border: 1px solid darken($pastelGreen, 10%);
+            border-radius: 5px;
+            outline: none;
+            background: $pastelGreen;
+            &:hover {
+                color: darken($pastelGreen, 30%);
+                background-color: lighten($pastelGreen, 10%);
+            }
+            svg {
+                margin: 0 7px 0 0;
+            }
+        }
+        .red {
+            color: darken($pastelRed, 50%);
+            border: 1px solid darken($pastelRed, 10%);
+            background: $pastelRed;
+            &:hover {
+                color: darken($pastelRed, 30%);
+                background-color: lighten($pastelRed, 10%);
+            }
+        }
+    }
+}

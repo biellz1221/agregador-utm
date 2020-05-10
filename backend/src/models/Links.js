@@ -50,7 +50,7 @@ const linkSchema = new mongoose.Schema({
 	paramLink: {
 		type: String,
 		required: true,
-		lowercase: true,
+		//lowercase: true,
 		match: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm,
 	},
 });

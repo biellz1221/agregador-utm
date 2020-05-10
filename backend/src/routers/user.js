@@ -51,7 +51,7 @@ router.post('/users/me/logoutall', auth, async (req, res) => {
 	try {
 		req.user.tokens.splice(0, req.user.tokens.length);
 		await req.user.save();
-		res.send();
+		res.status(200).send('Deslogado de todos os lugares e tokens apagados');
 	} catch (err) {
 		res.status(500).send(err);
 	}

@@ -20,7 +20,7 @@ export default function LinksList() {
 	const [linkId, setLinkId] = useState('');
 
 	//console.log(currentUser);
-	const [authSession, setAuthSession] = useState(JSON.parse(Cookies.get('utmloginsession')));
+	const authSession = JSON.parse(Cookies.get('utmloginsession'));
 	useEffect(() => {
 		if (authSession) {
 			api.get('/links/mylinks', {
