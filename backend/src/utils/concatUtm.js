@@ -16,10 +16,10 @@ const concatUTMParams = function (ogLink, source, campaign, media, term, content
 		linkStr = linkStr + '?';
 	}
 	linkStr = linkStr + 'utm_source=' + source + '&utm_campaign=' + campaign + '&utm_media=' + media;
-	if (term) {
+	if (term != '') {
 		linkStr = linkStr + '&utm_term=' + term;
 	}
-	if (content) {
+	if (content != '') {
 		linkStr = linkStr + '&utm_content=' + content;
 	}
 	return linkStr;
