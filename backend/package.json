@@ -29,7 +29,7 @@
 		"mongo-xlsx": "^1.0.12",
 		"mongodb": "^3.5.6",
 		"mongoose": "^5.9.9",
-		"validator": "^13.0.0"
+		"validator": "^13.7.0"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.3"
